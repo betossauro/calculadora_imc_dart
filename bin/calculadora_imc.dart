@@ -9,12 +9,14 @@ void main(List<String> arguments) {
   print('Informe seu nome: ');
   Pessoa pessoa = Pessoa("", 0.0, 0.0);
   try {
-    var nome = stdin.readLineSync(encoding: utf8);
-    if (nome != null && nome.trim().length > 2 ) {
+    String nome = stdin.readLineSync(encoding: utf8) ?? "";
+    if (nome == "") {
+      throw Exception("Nome inválido");
+    } else {
       pessoa.setNome(nome);
     }
   } catch (e) {
-    return print("Informe um nome válido");
+    return print("Informe um nome válido!");
   }
 
   print('Informe seu peso utilizando casas decimais (0.00)');
@@ -36,7 +38,7 @@ void main(List<String> arguments) {
       pessoa.setAltura(altura);
     }
   } catch (e) {
-    return print("Informe um peso válido");
+    return print("Informe uma altura válida");
   }
   print('');
   IMC imc = IMC();
